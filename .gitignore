@@ -6,7 +6,6 @@ logs
 node_modules/
 
 # Build files
-dist/
 lib/
 
 # Test files
