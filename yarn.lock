@@ -1462,6 +1462,14 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
+ts-array-utilities@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ts-array-utilities/-/ts-array-utilities-1.0.0.tgz#70227895f1e40bd4c602f0eb759e0f8536fc6733"
+  integrity sha512-rzQqnV8K/Lznx2oOH4oLVwB7RN2TKciNYeHXfZwfVUBCqEAjHH8jfPovzjDjY9lZOzXLGUkEQaP5+cYz9lOqtw==
+  dependencies:
+    "@babel/plugin-proposal-class-properties" "^7.18.6"
+    "@babel/preset-env" "^7.20.2"
+
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-2.0.0.tgz#301acdc525631670d39f6146e0e77ff6bbdebddc"

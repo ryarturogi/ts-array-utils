@@ -18,7 +18,7 @@ These functions can be useful for performing various operations on arrays in a c
 The sort method returns a new array with the elements sorted in ascending order.
 
 ```
-import { sort } from './array-utils';
+import { sort } from 'ts-array-utilities';
 
 const array = [3, 2, 1];
 const sortedArray = sort(array);
@@ -31,7 +31,7 @@ console.log(sortedArray); // [1, 2, 3]
 The filter method returns a new array with only the elements that match the predicate.
 
 ```
-import { filter } from './array-utils';
+import { filter } from 'ts-array-utilities';
 
 const array = [1, 2, 3, 4, 5];
 const evenNumbers = filter(array, n => n % 2 === 0);
@@ -44,7 +44,7 @@ console.log(evenNumbers); // [2, 4]
 The transform method returns a new array with the elements transformed by the transformer function.
 
 ```
-import { transform } from './array-utils';
+import { transform } from 'ts-array-utilities';
 
 const array = [1, 2, 3];
 const transformedArray = transform(array, n => n \* 2);
@@ -57,7 +57,7 @@ console.log(transformedArray); // [2, 4, 6]
 The includes method returns a boolean indicating whether the element is in the array.
 
 ```
-import { includes } from './array-utils';
+import { includes } from 'ts-array-utilities';
 
 const array = [1, 2, 3];
 const includes2 = includes(array, 2);
@@ -71,7 +71,7 @@ console.log(includes4); // false
 
 The min method returns the minimum element in the array, or undefined if the array is empty.
 
-import { min } from './array-utils';
+import { min } from 'ts-array-utilities';
 
 const array = [1, 2, 3];
 const minValue = min(array);
@@ -88,7 +88,7 @@ console.log(minValueEmpty); // undefined
 The max method returns the maximum element in the array, or undefined if the array is empty.
 
 ```
-import { max } from './array-utils';
+import { max } from 'ts-array-utilities';
 
 const array = [1, 2, 3];
 const maxValue = max(array);
@@ -106,7 +106,7 @@ console.log(maxValueEmpty); // undefined
 The sum method returns the sum of all elements in the array.
 
 ```
-import { sum } from './array-utils';
+import { sum } from 'ts-array-utilities';
 
 const array = [1, 2, 3];
 const total = sum(array);
@@ -119,7 +119,7 @@ console.log(total); // 6
 The average method returns the average of all elements in the array, or 0 if the array is empty.
 
 ```
-import { average } from './array-utils';
+import { average } from 'ts-array-utilities';
 
 const array = [1, 2, 3];
 const avg = average(array);
@@ -132,7 +132,7 @@ console.log(avg); // 2
 The distinct method returns a new array with only distinct elements.
 
 ```
-import { distinct } from './array-utils';
+import { distinct } from 'ts-array-utilities';
 
 const array: number[] = [1, 2, 2, 3, 3, 3];
 const distinctArray: number[] = distinct(array);
@@ -145,7 +145,7 @@ console.log(distinctArray);  // [1, 2, 3]
 The shuffle method returns a new array with the same elements, but in a shuffled order.
 
 ```
-import { shuffle } from './array-utils';
+import { shuffle } from 'ts-array-utilities';
 
 const array: number[] = [1, 2, 3];
 const shuffledArray: number[] = shuffle(array);
