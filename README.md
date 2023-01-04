@@ -1,6 +1,6 @@
 This library provides a set of functions for working with arrays in TypeScript. The functions include:
 
-- `sort`: returns a new array with the elements sorted in ascending order
+- `sort`: returns a new array with the elements sorted any direction by any property
 - `filter`: returns a new array with only the elements that match the predicate
 - `transform`: returns a new array with the elements transformed by the transformer function
 - `includes`: returns a boolean indicating whether the element is in the array
@@ -15,15 +15,21 @@ These functions can be useful for performing various operations on arrays in a c
 
 # `sort`
 
-The sort method returns a new array with the elements sorted in ascending order.
+The sort method returns a new array with the elements sorted any direction by any property.
 
 ```
 import { sort } from 'ts-array-utilities';
 
-const array = [3, 2, 1];
-const sortedArray = sort(array);
+const array = [
+  { name: 'Alice', age: 30 },
+  { name: 'Bob', age: 25 },
+  { name: 'Charlie', age: 35 }
+];
 
-console.log(sortedArray); // [1, 2, 3]
+const sortedArray = sort(array, 'desc', 'age');
+
+console.log(sortedArray); // [{ name: 'Charlie', age: 35 }, { name: 'Alice', age: 30 }, { name: 'Bob', age: 25 }]
+
 ```
 
 # `filter`
