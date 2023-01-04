@@ -1,28 +1,28 @@
 import { insertionSort, quicksort } from './sorting-algorithms'
 
-export const order = (array: any[], direction: string, sortBy: string) => {
+export const order = (array: any[], direction: string) => {
   if (direction === 'asc') {
-    return array.sort((a, b) => a[sortBy] - b[sortBy])
+    return array.sort((a: any, b: any) => a - b)
   } else {
-    return array.sort((a, b) => b[sortBy] - a[sortBy])
+    return array.sort((a: any, b: any) => b - a)
   }
 }
 
 export function sort(
   array: any[],
   direction: string = 'asc',
-  sortBy: string
+  sortBy: string = ''
 ): any[] {
   let results: any[] = []
 
   // Use the quicksort algorithm for large arrays
   if (array.length > 1000) {
-    results = quicksort(array)
+    results = quicksort(array, sortBy)
   } else {
-    results = insertionSort(array)
+    results = insertionSort(array, sortBy)
   }
   // Sort the array
-  return order(results, direction, sortBy)
+  return order(results, direction)
 }
 
 export function filter(
