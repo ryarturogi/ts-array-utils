@@ -2,26 +2,26 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.shuffle = exports.distinct = exports.average = exports.sum = exports.max = exports.min = exports.includes = exports.transform = exports.filter = exports.sort = exports.order = void 0;
 const sorting_algorithms_1 = require("./sorting-algorithms");
-const order = (array, direction, sortBy) => {
+const order = (array, direction) => {
     if (direction === 'asc') {
-        return array.sort((a, b) => a[sortBy] - b[sortBy]);
+        return array.sort((a, b) => a - b);
     }
     else {
-        return array.sort((a, b) => b[sortBy] - a[sortBy]);
+        return array.sort((a, b) => b - a);
     }
 };
 exports.order = order;
-function sort(array, direction = 'asc', sortBy) {
+function sort(array, direction = 'asc', sortBy = '') {
     let results = [];
     // Use the quicksort algorithm for large arrays
     if (array.length > 1000) {
-        results = (0, sorting_algorithms_1.quicksort)(array);
+        results = (0, sorting_algorithms_1.quicksort)(array, sortBy);
     }
     else {
-        results = (0, sorting_algorithms_1.insertionSort)(array);
+        results = (0, sorting_algorithms_1.insertionSort)(array, sortBy);
     }
     // Sort the array
-    return (0, exports.order)(results, direction, sortBy);
+    return (0, exports.order)(results, direction);
 }
 exports.sort = sort;
 function filter(array, predicate) {
