@@ -4,7 +4,7 @@
   "description": "multiple array utils, filters, shuffle, etc.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "test": "mocha --require ts-node/register 'test/**/*.spec.ts'",
     "prepublishOnly": "tsc -p ./ --outDir dist/"
