@@ -2,64 +2,37 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.quicksort = exports.insertionSort = void 0;
 function insertionSort(array, sortBy) {
-    if (array.length < 2) {
-        return array;
-    }
     for (let i = 1; i < array.length; i++) {
-        const element = array[i];
-        if (!element.hasOwnProperty(sortBy)) {
-            throw new Error(`Invalid element at index ${i}: ${element}`);
+        let j = i - 1;
+        let current = array[i];
+        while (j >= 0 && current[sortBy] < array[j][sortBy]) {
+            array[j + 1] = array[j];
+            j--;
         }
-        const sortValue = element[sortBy];
-        for (let j = 0; j < i; j++) {
-            if (!array[j].hasOwnProperty(sortBy)) {
-                throw new Error(`Invalid element at index ${j}: ${array[j]}`);
-            }
-            if (sortValue < array[j][sortBy]) {
-                array[i] = array[j];
-                array[j] = element;
-            }
-        }
+        array[j + 1] = current;
     }
     return array;
 }
 exports.insertionSort = insertionSort;
 function quicksort(array, sortBy) {
-    if (array.length < 2) {
-        return array;
+    // Use insertion sort for small arrays
+    if (array.length <= 10) {
+        return insertionSort(array, sortBy);
     }
-    const pivotIndex = getPivotIndex(array);
+    const pivotIndex = Math.floor(array.length / 2);
     const pivot = array[pivotIndex];
     const left = [];
     const right = [];
     for (let i = 0; i < array.length; i++) {
-        if (i !== pivotIndex) {
-            const value = array[i];
-            if (value[sortBy] < pivot[sortBy]) {
-                left.push(value);
-            }
-            else {
-                right.push(value);
-            }
+        if (i === pivotIndex)
+            continue;
+        if (array[i][sortBy] < pivot[sortBy]) {
+            left.push(array[i]);
+        }
+        else {
+            right.push(array[i]);
         }
     }
     return [...quicksort(left, sortBy), pivot, ...quicksort(right, sortBy)];
 }
 exports.quicksort = quicksort;
-function getPivotIndex(array) {
-    const length = array.length;
-    if (length <= 3) {
-        return length - 1;
-    }
-    const middle = Math.floor(length / 2);
-    if (array[0] < array[middle] && array[middle] < array[length - 1]) {
-        return middle;
-    }
-    else if (array[0] < array[length - 1] &&
-        array[length - 1] < array[middle]) {
-        return length - 1;
-    }
-    else {
-        return 0;
-    }
-}
