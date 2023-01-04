@@ -3,17 +3,46 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.shuffle = exports.distinct = exports.average = exports.sum = exports.max = exports.min = exports.includes = exports.transform = exports.filter = exports.sort = exports.order = void 0;
 const sorting_algorithms_1 = require("./sorting-algorithms");
 const order = (array, direction) => {
+    if (array.length <= 1)
+        return array;
     if (direction === 'asc') {
-        return array.sort((a, b) => a - b);
+        // Sort the array in ascending order
+        const middle = Math.floor(array.length / 2);
+        const left = array.slice(0, middle);
+        const right = array.slice(middle);
+        return merge((0, exports.order)(left, 'asc'), (0, exports.order)(right, 'asc'));
+    }
+    else if (direction === 'desc') {
+        // Sort the array in descending order
+        const middle = Math.floor(array.length / 2);
+        const left = array.slice(0, middle);
+        const right = array.slice(middle);
+        return merge((0, exports.order)(right, 'desc'), (0, exports.order)(left, 'desc'));
     }
     else {
-        return array.sort((a, b) => b - a);
+        // Return the original array if the direction is not recognized
+        return array;
     }
 };
 exports.order = order;
+const merge = (left, right) => {
+    const result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex] < right[rightIndex]) {
+            result.push(left[leftIndex]);
+            leftIndex++;
+        }
+        else {
+            result.push(right[rightIndex]);
+            rightIndex++;
+        }
+    }
+    return [...result, ...left.slice(leftIndex), ...right.slice(rightIndex)];
+};
 function sort(array, direction = 'asc', sortBy = '') {
     let results = [];
-    // Use the quicksort algorithm for large arrays
     if (array.length > 1000) {
         results = (0, sorting_algorithms_1.quicksort)(array, sortBy);
     }
