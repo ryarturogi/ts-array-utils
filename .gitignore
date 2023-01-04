@@ -8,6 +8,7 @@ node_modules/
 # Build files
 lib/
 demo/
+src/**/*.ts
 
 # Test files
 *.spec.*

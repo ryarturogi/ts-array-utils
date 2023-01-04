@@ -1,0 +1,10 @@
+export declare function sort(array: number[]): number[];
+export declare function filter(array: number[], predicate: (n: number) => boolean): number[];
+export declare function transform(array: number[], transformer: (n: number) => number): number[];
+export declare function includes(array: number[], element: number): boolean;
+export declare function min(array: number[]): number | undefined;
+export declare function max(array: number[]): number | undefined;
+export declare function sum(array: number[]): number;
+export declare function average(array: number[]): number;
+export declare function distinct(array: number[]): number[];
+export declare function shuffle(array: number[]): number[];
