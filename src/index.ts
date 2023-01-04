@@ -1,27 +1,11 @@
 import { insertionSort, quicksort } from './sorting-algorithms'
 
-export const order = (array: any[], direction: string) => {
-  // Sort in ascending order without reversing the array
+export const order = (array: any[], direction: string, sortBy: string) => {
   if (direction === 'asc') {
-    return array
+    return array.sort((a, b) => a[sortBy] - b[sortBy])
+  } else {
+    return array.sort((a, b) => b[sortBy] - a[sortBy])
   }
-
-  // Sort in descending order by reversing the array
-  if (direction === 'desc') {
-    // Use the native reverse method for small arrays
-    if (array.length <= 100) {
-      return array.reverse()
-    } else {
-      // Use a custom reverse function for large arrays
-      const reversed = []
-      for (let i = array.length - 1; i >= 0; i--) {
-        reversed.push(array[i])
-      }
-      return reversed
-    }
-  }
-
-  throw new Error(`Invalid direction: ${direction}`)
 }
 
 export function sort(
@@ -33,13 +17,12 @@ export function sort(
 
   // Use the quicksort algorithm for large arrays
   if (array.length > 1000) {
-    results = quicksort(array, sortBy)
+    results = quicksort(array)
   } else {
-    results = insertionSort(array, sortBy)
+    results = insertionSort(array)
   }
-
-  // Use insertion sort for small arrays
-  return order(results, direction)
+  // Sort the array
+  return order(results, direction, sortBy)
 }
 
 export function filter(
