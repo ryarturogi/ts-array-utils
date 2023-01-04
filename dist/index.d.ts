@@ -1,4 +1,4 @@
-export declare const order: (array: any[], direction: string) => any[];
+export declare const order: (array: any[], direction: string, sortBy: string) => any[];
 export declare function sort(array: any[], direction: string | undefined, sortBy: string): any[];
 export declare function filter(array: number[], predicate: (n: number) => boolean): number[];
 export declare function transform(array: number[], transformer: (n: number) => number): number[];

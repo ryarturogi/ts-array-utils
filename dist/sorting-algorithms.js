@@ -1,53 +1,59 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.quicksort = exports.insertionSort = void 0;
-function insertionSort(array, sortBy = 'value') {
-    if (array.length <= 1) {
+function insertionSort(array) {
+    // Add a check to handle arrays with fewer than two elements
+    if (array.length < 2) {
         return array;
     }
     for (let i = 1; i < array.length; i++) {
-        if (typeof array[i] !== 'object') {
-            throw new Error(`Invalid element at index ${i}: ${array[i]}`);
-        }
-        let j = i;
-        while (j > 0 && array[j][sortBy] < array[j - 1][sortBy]) {
-            let temp = array[j];
-            array[j] = array[j - 1];
-            array[j - 1] = temp;
+        let j = i - 1;
+        const temp = array[i];
+        while (j >= 0 && array[j] > temp) {
+            array[j + 1] = array[j];
             j--;
         }
+        array[j + 1] = temp;
     }
     return array;
 }
 exports.insertionSort = insertionSort;
-function quicksort(array, sortBy = 'value') {
-    // Use insertion sort for small arrays
-    if (array.length <= 10) {
-        return insertionSort(array, sortBy);
+function quicksort(array) {
+    // Add a check to handle arrays with fewer than two elements
+    if (array.length < 2) {
+        return array;
     }
-    // Select pivot as median value
-    const pivotIndex = Math.floor(array.length / 2);
-    const pivot = array[pivotIndex][sortBy];
-    // Partition the array into left and right subarrays
-    let i = 0;
-    let j = array.length - 1;
-    while (i < j) {
-        while (array[i][sortBy] < pivot) {
-            i++;
+    // Use median-of-three pivot selection to choose the pivot for improved performance
+    const pivotIndex = getPivotIndex(array);
+    const pivot = array[pivotIndex];
+    array.splice(pivotIndex, 1);
+    const left = [];
+    const right = [];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] < pivot) {
+            left.push(array[i]);
         }
-        while (array[j][sortBy] > pivot) {
-            j--;
-        }
-        if (i < j) {
-            ;
-            [array[i], array[j]] = [array[j], array[i]];
-            i++;
-            j--;
+        else {
+            right.push(array[i]);
         }
     }
-    // Recursively sort left and right subarrays
-    const left = array.slice(0, i);
-    const right = array.slice(i);
-    return [...quicksort(left, sortBy), ...quicksort(right, sortBy)];
+    return [...quicksort(left), pivot, ...quicksort(right)];
 }
 exports.quicksort = quicksort;
+function getPivotIndex(array) {
+    const length = array.length;
+    if (length <= 3) {
+        return length - 1;
+    }
+    const middle = Math.floor(length / 2);
+    if (array[0] < array[middle] && array[middle] < array[length - 1]) {
+        return middle;
+    }
+    else if (array[0] < array[length - 1] &&
+        array[length - 1] < array[middle]) {
+        return length - 1;
+    }
+    else {
+        return 0;
+    }
+}
