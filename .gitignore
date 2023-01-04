@@ -15,6 +15,7 @@ src/**/*.ts
 *.test.*
 *.e2e.*
 test/
+demo/
 
 #Config Files
 tsconfig.json

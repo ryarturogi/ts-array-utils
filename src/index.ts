@@ -1,5 +1,45 @@
-export function sort(array: number[]): number[] {
-  return array.sort((a, b) => a - b)
+import { insertionSort, quicksort } from './sorting-algorithms'
+
+export const order = (array: any[], direction: string) => {
+  // Sort in ascending order without reversing the array
+  if (direction === 'asc') {
+    return array
+  }
+
+  // Sort in descending order by reversing the array
+  if (direction === 'desc') {
+    // Use the native reverse method for small arrays
+    if (array.length <= 100) {
+      return array.reverse()
+    } else {
+      // Use a custom reverse function for large arrays
+      const reversed = []
+      for (let i = array.length - 1; i >= 0; i--) {
+        reversed.push(array[i])
+      }
+      return reversed
+    }
+  }
+
+  throw new Error(`Invalid direction: ${direction}`)
+}
+
+export function sort(
+  array: any[],
+  direction: string = 'asc',
+  sortBy: string
+): any[] {
+  let results: any[] = []
+
+  // Use the quicksort algorithm for large arrays
+  if (array.length > 1000) {
+    results = quicksort(array, sortBy)
+  } else {
+    results = insertionSort(array, sortBy)
+  }
+
+  // Use insertion sort for small arrays
+  return order(results, direction)
 }
 
 export function filter(

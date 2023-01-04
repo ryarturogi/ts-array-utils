@@ -1,8 +1,41 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.shuffle = exports.distinct = exports.average = exports.sum = exports.max = exports.min = exports.includes = exports.transform = exports.filter = exports.sort = void 0;
-function sort(array) {
-    return array.sort((a, b) => a - b);
+exports.shuffle = exports.distinct = exports.average = exports.sum = exports.max = exports.min = exports.includes = exports.transform = exports.filter = exports.sort = exports.order = void 0;
+const sorting_algorithms_1 = require("./sorting-algorithms");
+const order = (array, direction) => {
+    // Sort in ascending order without reversing the array
+    if (direction === 'asc') {
+        return array;
+    }
+    // Sort in descending order by reversing the array
+    if (direction === 'desc') {
+        // Use the native reverse method for small arrays
+        if (array.length <= 100) {
+            return array.reverse();
+        }
+        else {
+            // Use a custom reverse function for large arrays
+            const reversed = [];
+            for (let i = array.length - 1; i >= 0; i--) {
+                reversed.push(array[i]);
+            }
+            return reversed;
+        }
+    }
+    throw new Error(`Invalid direction: ${direction}`);
+};
+exports.order = order;
+function sort(array, direction = 'asc', sortBy) {
+    let results = [];
+    // Use the quicksort algorithm for large arrays
+    if (array.length > 1000) {
+        results = (0, sorting_algorithms_1.quicksort)(array, sortBy);
+    }
+    else {
+        results = (0, sorting_algorithms_1.insertionSort)(array, sortBy);
+    }
+    // Use insertion sort for small arrays
+    return (0, exports.order)(results, direction);
 }
 exports.sort = sort;
 function filter(array, predicate) {
