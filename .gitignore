@@ -14,6 +14,11 @@ src/**/*.ts
 *.spec.*
 *.test.*
 *.e2e.*
+test/
+
+#Config Files
+tsconfig.json
+jest.config.js
 
 # Coverage files
 coverage/
