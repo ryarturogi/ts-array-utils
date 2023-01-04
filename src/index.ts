@@ -1,11 +1,44 @@
 import { insertionSort, quicksort } from './sorting-algorithms'
 
-export const order = (array: any[], direction: string) => {
+export const order = (array: any[], direction: string): any => {
+  if (array.length <= 1) return array
+
   if (direction === 'asc') {
-    return array.sort((a: any, b: any) => a - b)
+    // Sort the array in ascending order
+    const middle = Math.floor(array.length / 2)
+    const left = array.slice(0, middle)
+    const right = array.slice(middle)
+
+    return merge(order(left, 'asc'), order(right, 'asc'))
+  } else if (direction === 'desc') {
+    // Sort the array in descending order
+    const middle = Math.floor(array.length / 2)
+    const left = array.slice(0, middle)
+    const right = array.slice(middle)
+
+    return merge(order(right, 'desc'), order(left, 'desc'))
   } else {
-    return array.sort((a: any, b: any) => b - a)
+    // Return the original array if the direction is not recognized
+    return array
   }
+}
+
+const merge = (left: any[], right: any[]) => {
+  const result = []
+  let leftIndex = 0
+  let rightIndex = 0
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      result.push(left[leftIndex])
+      leftIndex++
+    } else {
+      result.push(right[rightIndex])
+      rightIndex++
+    }
+  }
+
+  return [...result, ...left.slice(leftIndex), ...right.slice(rightIndex)]
 }
 
 export function sort(
@@ -15,7 +48,6 @@ export function sort(
 ): any[] {
   let results: any[] = []
 
-  // Use the quicksort algorithm for large arrays
   if (array.length > 1000) {
     results = quicksort(array, sortBy)
   } else {
