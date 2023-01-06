@@ -20,7 +20,7 @@ export declare function randomSample(array: any[], size: number): any[];
 export declare function mean(array: number[]): number;
 export declare function median(array: number[]): number;
 export declare function mode(array: number[]): number;
-export declare function variance(array: number[]): number;
+export declare function variance(array: any[]): number;
 export declare function standardDeviation(array: number[]): number;
 export declare function range(array: number[]): number[];
 export declare function countBy(array: any[], callback: (element: any) => any): object;

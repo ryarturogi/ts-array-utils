@@ -232,9 +232,18 @@ function mode(array) {
 }
 exports.mode = mode;
 function variance(array) {
-    const meanValue = mean(array);
-    const squaredDifferences = array.map((x) => Math.pow((x - meanValue), 2));
-    return mean(squaredDifferences);
+    if (array.length === 0) {
+        return 0;
+    }
+    const flatArray = flattenArray(array);
+    if (flatArray.every((element) => typeof element === 'number')) {
+        const meanValue = mean(flatArray);
+        const squaredDifferences = flatArray.map((x) => Math.pow((x - meanValue), 2));
+        return mean(squaredDifferences);
+    }
+    else {
+        return NaN;
+    }
 }
 exports.variance = variance;
 function standardDeviation(array) {
