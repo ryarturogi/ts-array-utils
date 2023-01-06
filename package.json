@@ -9,6 +9,9 @@
     "type": "git",
     "url": "git+https://github.com/ryarturogi/ts-array-utils.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "test": "jest",
     "prepublishOnly": "tsc -p ./ --outDir dist/"
