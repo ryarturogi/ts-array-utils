@@ -22,8 +22,6 @@ export declare function median(array: number[]): number;
 export declare function mode(array: number[]): number;
 export declare function variance(array: any[]): number;
 export declare function standardDeviation(array: number[]): number;
-export declare function range(array: number[]): number[];
-export declare function countBy(array: any[], callback: (element: any) => any): object;
 export declare function countOccurrences(array: any[], element: any): number;
 export declare function zip(...arrays: any[][]): any[][];
 export declare function unzip(array: any[][]): any[][];
@@ -43,3 +41,5 @@ export declare function insert(array: any[], index: number, ...elements: any[]):
 export declare function merge(array1: any[], array2: any[]): any[];
 export declare function pad(array: any[], padding: any, repeat: number): any[];
 export declare function repeat(element: any, repeat: number): any[];
+export declare function range(array: number[]): number[];
+export declare function countBy(array: any[], callback: (element: any) => any): object;

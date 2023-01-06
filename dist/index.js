@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.repeat = exports.pad = exports.merge = exports.insert = exports.remove = exports.findLast = exports.findFirst = exports.reverseFill = exports.fill = exports.move = exports.swap = exports.isEqual = exports.isSorted = exports.mirror = exports.flip = exports.rotate = exports.unzip = exports.zip = exports.countOccurrences = exports.countBy = exports.range = exports.standardDeviation = exports.variance = exports.mode = exports.median = exports.mean = exports.randomSample = exports.chunk = exports.removeDuplicates = exports.difference = exports.intersection = exports.partition = exports.groupBy = exports.uniqueElements = exports.flattenArray = exports.shuffle = exports.distinct = exports.average = exports.sum = exports.max = exports.min = exports.includes = exports.transform = exports.filter = exports.sort = void 0;
+exports.countBy = exports.range = exports.repeat = exports.pad = exports.merge = exports.insert = exports.remove = exports.findLast = exports.findFirst = exports.reverseFill = exports.fill = exports.move = exports.swap = exports.isEqual = exports.isSorted = exports.mirror = exports.flip = exports.rotate = exports.unzip = exports.zip = exports.countOccurrences = exports.standardDeviation = exports.variance = exports.mode = exports.median = exports.mean = exports.randomSample = exports.chunk = exports.removeDuplicates = exports.difference = exports.intersection = exports.partition = exports.groupBy = exports.uniqueElements = exports.flattenArray = exports.shuffle = exports.distinct = exports.average = exports.sum = exports.max = exports.min = exports.includes = exports.transform = exports.filter = exports.sort = void 0;
 const helpers_1 = require("./helpers");
 const sorting_algorithms_1 = require("./sorting-algorithms");
 function sort(array, direction = 'asc', sortBy = '') {
@@ -269,19 +269,6 @@ function standardDeviation(array) {
     return Math.sqrt(variance(array));
 }
 exports.standardDeviation = standardDeviation;
-function range(array) {
-    array.sort((a, b) => a - b);
-    return [array[0], array[array.length - 1]];
-}
-exports.range = range;
-function countBy(array, callback) {
-    return array.reduce((counts, element) => {
-        const key = callback(element);
-        counts[key] = (counts[key] || 0) + 1;
-        return counts;
-    }, {});
-}
-exports.countBy = countBy;
 function countOccurrences(array, element) {
     return array.reduce((count, current) => (current === element ? count + 1 : count), 0);
 }
@@ -378,3 +365,16 @@ function repeat(element, repeat) {
     return new Array(repeat).fill(element);
 }
 exports.repeat = repeat;
+function range(array) {
+    array.sort((a, b) => a - b);
+    return [array[0], array[array.length - 1]];
+}
+exports.range = range;
+function countBy(array, callback) {
+    return array.reduce((counts, element) => {
+        const key = callback(element);
+        counts[key] = (counts[key] || 0) + 1;
+        return counts;
+    }, {});
+}
+exports.countBy = countBy;
