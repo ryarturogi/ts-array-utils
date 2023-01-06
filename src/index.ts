@@ -296,19 +296,6 @@ export function standardDeviation(array: number[]): number {
   return Math.sqrt(variance(array))
 }
 
-export function range(array: number[]): number[] {
-  array.sort((a, b) => a - b)
-  return [array[0], array[array.length - 1]]
-}
-
-export function countBy(array: any[], callback: (element: any) => any): object {
-  return array.reduce((counts, element) => {
-    const key = callback(element)
-    counts[key] = (counts[key] || 0) + 1
-    return counts
-  }, {})
-}
-
 export function countOccurrences(array: any[], element: any): number {
   return array.reduce(
     (count, current) => (current === element ? count + 1 : count),
@@ -417,4 +404,17 @@ export function pad(array: any[], padding: any, repeat: number): any[] {
 
 export function repeat(element: any, repeat: number): any[] {
   return new Array(repeat).fill(element)
+}
+
+export function range(array: number[]): number[] {
+  array.sort((a, b) => a - b)
+  return [array[0], array[array.length - 1]]
+}
+
+export function countBy(array: any[], callback: (element: any) => any): object {
+  return array.reduce((counts, element) => {
+    const key = callback(element)
+    counts[key] = (counts[key] || 0) + 1
+    return counts
+  }, {})
 }

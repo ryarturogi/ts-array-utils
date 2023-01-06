@@ -10,6 +10,22 @@ This library provides a set of functions for working with arrays in TypeScript. 
 - `average`: returns the average of all elements in the array, or 0 if the array is empty
 - `distinct`: returns a new array with only distinct elements
 - `shuffle`: returns a new array with the same elements, but in a shuffled order
+- `flattenArray`: Flattens an array of nested arrays into a single array.
+- `uniqueElements`: Returns an array with only the unique elements from the input array.
+- `groupBy`: Groups the elements of an array based on the result of a callback function.
+- `partition`: Divides an array into two arrays based on the result of a callback function.
+- `intersection`: Returns an array with the elements that exist in both input arrays.
+- `difference`: Returns an array with the elements that exist in the first input array but not the second.
+- `removeDuplicates`: Removes duplicates from an array in place.
+- `chunk`: Divides an array into smaller arrays of a given size.
+- `randomSample`: Returns an array with a random sample of elements from the input array.
+- `mean`: Returns the mean of an array of numbers.
+- `median`: Returns the median of an array of numbers.
+- `mode`: Returns the mode of an array of numbers.
+- `variance`: Returns the variance of an array of numbers.
+- `standardDeviation`: Returns the standard deviation of an array of numbers.
+- `range`: Returns an array with the minimum and maximum elements in an array of numbers.
+- `countBy`: Groups the elements of an array and counts the number of elements in each group.
 
 These functions can be useful for performing various operations on arrays in a concise and readable way.
 
