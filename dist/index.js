@@ -233,7 +233,8 @@ function mode(array) {
 exports.mode = mode;
 function variance(array) {
     const meanValue = mean(array);
-    return mean(array.map((x) => Math.pow((x - meanValue), 2)));
+    const squaredDifferences = array.map((x) => Math.pow((x - meanValue), 2));
+    return mean(squaredDifferences);
 }
 exports.variance = variance;
 function standardDeviation(array) {
