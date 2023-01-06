@@ -4,3 +4,7 @@ export declare function sortObjectArray(array: object[], direction: string, sort
 export declare function deepEqual(a: any, b: any): boolean;
 export declare function isNumber(value: any): value is number;
 export declare function isObject(value: any): value is object;
+export declare function isArrayOfNumbers(arr: any[]): boolean;
+export declare function isArrayOfObjects(arr: any[]): boolean;
+export declare function isArrayOfStrings(arr: any[]): boolean;
+export declare function isArrayOfArrays(arr: any[]): boolean;

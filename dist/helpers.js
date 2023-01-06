@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isObject = exports.isNumber = exports.deepEqual = exports.sortObjectArray = exports.sortStringArray = exports.sortNumberArray = void 0;
+exports.isArrayOfArrays = exports.isArrayOfStrings = exports.isArrayOfObjects = exports.isArrayOfNumbers = exports.isObject = exports.isNumber = exports.deepEqual = exports.sortObjectArray = exports.sortStringArray = exports.sortNumberArray = void 0;
 function sortNumberArray(array, direction) {
     return array.sort((a, b) => (direction === 'asc' ? a - b : b - a));
 }
@@ -73,3 +73,19 @@ function isObject(value) {
     return typeof value === 'object' && value !== null;
 }
 exports.isObject = isObject;
+function isArrayOfNumbers(arr) {
+    return arr.every((element) => typeof element === 'number');
+}
+exports.isArrayOfNumbers = isArrayOfNumbers;
+function isArrayOfObjects(arr) {
+    return arr.every((element) => typeof element === 'object');
+}
+exports.isArrayOfObjects = isArrayOfObjects;
+function isArrayOfStrings(arr) {
+    return arr.every((element) => typeof element === 'string');
+}
+exports.isArrayOfStrings = isArrayOfStrings;
+function isArrayOfArrays(arr) {
+    return arr.every((element) => Array.isArray(element));
+}
+exports.isArrayOfArrays = isArrayOfArrays;
