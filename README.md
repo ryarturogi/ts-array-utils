@@ -40,9 +40,29 @@ The `filter` method returns a new array with only the elements that match the pr
 import { filter } from 'ts-array-utilities';
 
 const array = [1, 2, 3, 4, 5];
-const evenNumbers = filter(array, n => n % 2 === 0);
+const filteredArray = filter(array, n => n \> 2);
 
-console.log(evenNumbers); // [2, 4]
+console.log(filteredArray); // [3, 4, 5]
+
+const objectArray = [
+  { name: 'Alice', age: 30 },
+  { name: 'Bob', age: 25 },
+  { name: 'Charlie', age: 35 }
+];
+
+const filteredObjectArray = filter(objectArray, person => person.age \> 30);
+
+console.log(filteredObjectArray); // [{ name: 'Charlie', age: 35 }]
+
+// Filter an array of objects by a property
+const filteredObjectArrayByProperty = filter(objectArray, 'age', 30);
+
+console.log(filteredObjectArrayByProperty); // [{ name: 'Alice', age: 30 }]
+
+// Filter an array of objects by a property and a predicate
+const filteredObjectArrayByPropertyAndPredicate = filter(objectArray, 'age', age => age \> 30);
+
+console.log(filteredObjectArrayByPropertyAndPredicate); // [{ name: 'Charlie', age: 35 }]
 ```
 
 # `transform`

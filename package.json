@@ -5,6 +5,10 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryarturogi/ts-array-utils.git"
+  },
   "scripts": {
     "test": "jest",
     "prepublishOnly": "tsc -p ./ --outDir dist/"
