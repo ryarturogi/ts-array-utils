@@ -190,15 +190,6 @@ console.log(distinctArray);  // [1, 2, 3]
 
 The `shuffle` method returns a new array with the same elements, but in a shuffled order.
 
-<!-- export function shuffle(array: any[]): any[] {
-  const copy = [...array]
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[copy[i], copy[j]] = [copy[j], copy[i]]
-  }
-  return copy
-} -->
-
 ```
 import { shuffle } from 'ts-array-utilities';
 
@@ -229,4 +220,224 @@ console.log(shuffledNestedStringArray); // [['e', 'f'], ['a', 'b'], ['c', 'd']]
 const nestedMixedArray = [[1, 2], ['a', 'b'], [{ key: 1 }, { key: 2 }]];
 const shuffledNestedMixedArray = shuffle(nestedMixedArray);
 console.log(shuffledNestedMixedArray); // [['a', 'b'], [{ key: 1 }, { key: 2 }], [1, 2]]
+```
+
+# `flattenArray`
+
+The `flattenArray` method flattens an array of arbitrarily nested arrays of any type into a flat array.
+
+```
+import { flattenArray } from 'ts-array-utilities';
+
+const nestedArray = [1, [2, [3, [4]]]];
+const flatArray = flattenArray(nestedArray);
+// flatArray: [1, 2, 3, 4]
+
+const moreNestedArray = [1, 2, [3, [4, 5], 6, [[[7, 8]]]], 9];
+const moreFlatArray = flattenArray(moreNestedArray);
+// moreFlatArray: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+# `uniqueElements`
+
+The `uniqueElements` method returns an array with all the unique elements of the input array.
+
+```
+import { uniqueElements } from 'ts-array-utilities';
+
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+const uniqueArray = uniqueElements(array);
+// [1, 2, 3, 4, 5]
+```
+
+# `groupBy`
+
+The `groupBy` Groups the elements of the array by the result of calling callback on each element. Returns an object where the keys are the values returned by callback and the values are arrays containing the elements that returned that value.
+
+```
+import { groupBy } from 'ts-array-utilities';
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+// Group the elements of the array by their parity (even or odd)
+const groupedArray = groupBy(array, (element) => element % 2 === 0);
+// { 'true': [2, 4, 4, 4], 'false': [1, 3, 3, 5, 5] }
+```
+
+# `partition`
+
+The `partition` method partitions the array into two arrays based on the result of calling callback on each element. The first array contains the elements for which callback returned true, and the second array contains the elements for which callback returned false.
+
+```
+import { partition } from 'ts-array-utilities';
+
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+// Partition the array into even and odd numbers
+const partitionedArray = partition(array, (element) => element % 2 === 0);
+// [[2, 4, 4, 4], [1, 3, 3, 5, 5]]
+```
+
+# `intersection`
+
+The `intersection` method returns an array containing the elements that are present in both array1 and array2.
+
+```
+import { intersection } from 'ts-array-utilities';
+
+// Calculate the intersection of the array with itself
+const intersectedArray = intersection(array, array);
+// [1, 2, 3, 3, 4, 4, 4, 5, 5]
+```
+
+# `difference`
+
+The `difference` method returns an array containing the elements that are present in array1 but not in array2.
+
+```
+import { difference } from 'ts-array-utilities';
+
+// Calculate the difference between the array and itself
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const diffedArray = difference(array, array);
+// []
+```
+
+# `removeDuplicates`
+
+The `removeDuplicates` method removes duplicate elements from the array.
+chunk(array, size): Splits the array into an array of smaller arrays, each with a maximum length of size.
+
+```
+import { removeDuplicates } from 'ts-array-utilities';
+
+// Remove duplicates from the array
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+removeDuplicates(array);
+// [1, 2, 3, 4, 5]
+```
+
+# `chunk`
+
+The `chunk` method splits the array into an array of smaller arrays, each with a maximum length of size.
+
+```
+import { chunk } from 'ts-array-utilities';
+
+// Split the array into chunks of size 2
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const chunkedArray = chunk(array, 2);
+// [[1, 2], [3, 4], [5]]
+```
+
+# `randomSample`
+
+The `randomSample` method returns an array of size random elements from the array.
+
+```
+import { randomSample } from 'ts-array-utilities';
+
+// Select 3 random elements from the array
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const randomSample = randomSample(array, 3);
+```
+
+# `mean`
+
+The `mean` method calculates the mean (average) of the numbers in the array.
+
+```
+import { mean } from 'ts-array-utilities';
+
+// Calculate the mean of the elements in the array
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const meanValue = mean(array);
+// 3
+```
+
+# `median`
+
+The `median` method calculates the median of the numbers in the array.
+
+```
+import { median } from 'ts-array-utilities';
+
+// Calculate the median of the elements in the array
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const medianValue = median(array);
+// 3
+```
+
+# `mode`
+
+The `mode` method calculates the mode (most common value) of the numbers in the array.
+
+```
+import { mode } from 'ts-array-utilities';
+
+// Calculate the mode of the elements in the array
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const modeValue = mode(array);
+// 3 or 4 (either value is the most common in the array)
+```
+
+# `variance`
+
+The `variance` method calculates the variance of the numbers in the array.
+
+```
+import { variance } from 'ts-array-utilities';
+
+// Calculate the variance of the elements in the array
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const varianceValue = variance(array);
+// 2.5
+```
+
+# `standardDeviation`
+
+The `standardDeviation` method calculates the standard deviation of the numbers in the array.
+
+```
+import { standardDeviation } from 'ts-array-utilities';
+
+// Calculate the standard deviation of the elements in the array
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const standardDeviationValue = standardDeviation(array);
+// 1.5811388300841898
+```
+
+# `range`
+
+The `range` method calculates the minimum and maximum values in the array.
+
+```
+import { range } from 'ts-array-utilities';
+
+// Calculate the minimum and maximum values in the array
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const rangeValue = range(array);
+// [1, 5]
+```
+
+# `countBy`
+
+The `countBy` method counts the number of occurrences of each value in the array based on the result of calling callback on each element. Returns an object where the keys are the values returned by callback and the values are the number of occurrences of that value in the array.
+
+```
+import { countBy } from 'ts-array-utilities';
+// Count the number of even and odd elements in the array
+const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
+
+const countByValue = countBy(array, (element) => element % 2 === 0);
+// { 'true': 2, 'false': 3 }
 ```
