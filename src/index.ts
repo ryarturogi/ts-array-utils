@@ -249,10 +249,20 @@ export function mode(array: number[]): number {
   return mode
 }
 
-export function variance(array: number[]): number {
-  const meanValue = mean(array)
-  const squaredDifferences = array.map((x) => (x - meanValue) ** 2)
-  return mean(squaredDifferences)
+export function variance(array: any[]): number {
+  if (array.length === 0) {
+    return 0
+  }
+
+  const flatArray = flattenArray(array)
+
+  if (flatArray.every((element) => typeof element === 'number')) {
+    const meanValue = mean(flatArray)
+    const squaredDifferences = flatArray.map((x) => (x - meanValue) ** 2)
+    return mean(squaredDifferences)
+  } else {
+    return NaN
+  }
 }
 
 export function standardDeviation(array: number[]): number {
