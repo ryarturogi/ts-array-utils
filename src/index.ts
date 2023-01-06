@@ -1,5 +1,9 @@
 import {
   deepEqual,
+  isArrayOfArrays,
+  isArrayOfNumbers,
+  isArrayOfObjects,
+  isArrayOfStrings,
   isNumber,
   isObject,
   sortNumberArray,
@@ -250,19 +254,42 @@ export function mode(array: number[]): number {
 }
 
 export function variance(array: any[]): number {
+  // check if array is empty
   if (array.length === 0) {
     return 0
   }
 
-  const flatArray = flattenArray(array)
+  // check if array has nested objects
+  if (isArrayOfObjects(array)) {
+    const key = arguments[1]
+    const values = array.map((obj) => obj[key])
+    return variance(values)
+  }
 
-  if (flatArray.every((element) => typeof element === 'number')) {
-    const meanValue = mean(flatArray)
-    const squaredDifferences = flatArray.map((x) => (x - meanValue) ** 2)
-    return mean(squaredDifferences)
-  } else {
+  // check if array has strings
+  if (isArrayOfStrings(array)) {
     return NaN
   }
+
+  // check if array has numbers
+  if (isArrayOfNumbers(array)) {
+    const mean = array.reduce((a, b) => a + b) / array.length
+    const squaredDifferences = array.map((num) => Math.pow(num - mean, 2))
+    return squaredDifferences.reduce((a, b) => a + b) / array.length
+  }
+
+  // check if array has nested arrays
+  if (isArrayOfArrays(array)) {
+    const flattened = array.flat()
+    return variance(flattened)
+  }
+
+  // calculate the mean
+  const mean = array.reduce((a, b) => a + b) / array.length
+  // calculate the squared differences
+  const squaredDifferences = array.map((num) => Math.pow(num - mean, 2))
+  // calculate the variance
+  return squaredDifferences.reduce((a, b) => a + b) / array.length
 }
 
 export function standardDeviation(array: number[]): number {
