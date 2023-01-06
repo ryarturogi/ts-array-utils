@@ -251,7 +251,8 @@ export function mode(array: number[]): number {
 
 export function variance(array: number[]): number {
   const meanValue = mean(array)
-  return mean(array.map((x) => (x - meanValue) ** 2))
+  const squaredDifferences = array.map((x) => (x - meanValue) ** 2)
+  return mean(squaredDifferences)
 }
 
 export function standardDeviation(array: number[]): number {
