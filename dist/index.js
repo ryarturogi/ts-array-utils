@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.countBy = exports.range = exports.repeat = exports.pad = exports.merge = exports.insert = exports.remove = exports.findLast = exports.findFirst = exports.reverseFill = exports.fill = exports.move = exports.swap = exports.isEqual = exports.isSorted = exports.mirror = exports.flip = exports.rotate = exports.unzip = exports.zip = exports.countOccurrences = exports.standardDeviation = exports.variance = exports.mode = exports.median = exports.mean = exports.randomSample = exports.chunk = exports.removeDuplicates = exports.difference = exports.intersection = exports.partition = exports.groupBy = exports.uniqueElements = exports.flattenArray = exports.shuffle = exports.distinct = exports.average = exports.sum = exports.max = exports.min = exports.includes = exports.transform = exports.filter = exports.sort = void 0;
+exports.deepSearch = exports.countBy = exports.range = exports.repeat = exports.pad = exports.merge = exports.insert = exports.remove = exports.findLast = exports.findFirst = exports.reverseFill = exports.fill = exports.move = exports.swap = exports.isEqual = exports.isSorted = exports.mirror = exports.flip = exports.rotate = exports.unzip = exports.zip = exports.countOccurrences = exports.standardDeviation = exports.variance = exports.mode = exports.median = exports.mean = exports.randomSample = exports.chunk = exports.removeDuplicates = exports.difference = exports.intersection = exports.partition = exports.groupBy = exports.uniqueElements = exports.flattenArray = exports.shuffle = exports.distinct = exports.average = exports.sum = exports.max = exports.min = exports.includes = exports.transform = exports.filter = exports.sort = void 0;
 const helpers_1 = require("./helpers");
 const sorting_algorithms_1 = require("./sorting-algorithms");
 function sort(array, direction = 'asc', sortBy = '') {
@@ -378,3 +378,29 @@ function countBy(array, callback) {
     }, {});
 }
 exports.countBy = countBy;
+function deepSearch(input, pattern, startIndex = 0) {
+    let idx = startIndex;
+    while (true) {
+        const slice = input.slice(idx, idx + pattern.length);
+        if (slice.length === 0) {
+            return undefined;
+        }
+        let found = true;
+        for (let i = 0; i < pattern.length; i++) {
+            if (Array.isArray(pattern[i]) || typeof pattern[i] === 'object') {
+                found = deepSearch(input, pattern[i], idx + i);
+            }
+            else if (slice[i] !== pattern[i]) {
+                found = false;
+            }
+            if (!found) {
+                break;
+            }
+        }
+        if (found) {
+            return idx;
+        }
+        idx += 1;
+    }
+}
+exports.deepSearch = deepSearch;

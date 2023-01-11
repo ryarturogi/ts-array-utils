@@ -43,3 +43,4 @@ export declare function pad(array: any[], padding: any, repeat: number): any[];
 export declare function repeat(element: any, repeat: number): any[];
 export declare function range(array: number[]): number[];
 export declare function countBy(array: any[], callback: (element: any) => any): object;
+export declare function deepSearch(input: any, pattern: any, startIndex?: number): number | undefined;

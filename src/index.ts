@@ -418,3 +418,32 @@ export function countBy(array: any[], callback: (element: any) => any): object {
     return counts
   }, {})
 }
+
+export function deepSearch(
+  input: any,
+  pattern: any,
+  startIndex: number = 0
+): number | undefined {
+  let idx = startIndex
+  while (true) {
+    const slice = input.slice(idx, idx + pattern.length)
+    if (slice.length === 0) {
+      return undefined
+    }
+    let found: any = true
+    for (let i = 0; i < pattern.length; i++) {
+      if (Array.isArray(pattern[i]) || typeof pattern[i] === 'object') {
+        found = deepSearch(input, pattern[i], idx + i)
+      } else if (slice[i] !== pattern[i]) {
+        found = false
+      }
+      if (!found) {
+        break
+      }
+    }
+    if (found) {
+      return idx
+    }
+    idx += 1
+  }
+}
