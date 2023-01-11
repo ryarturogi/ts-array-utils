@@ -26,6 +26,7 @@ This library provides a set of functions for working with arrays in TypeScript. 
 - `standardDeviation`: Returns the standard deviation of an array of numbers.
 - `range`: Returns an array with the minimum and maximum elements in an array of numbers.
 - `countBy`: Groups the elements of an array and counts the number of elements in each group.
+- `deepSearch`: Finds patterns, in strings, arrays, objects or nested combinations and returns the index of the match."
 
 These functions can be useful for performing various operations on arrays in a concise and readable way.
 
@@ -456,4 +457,43 @@ const array = [1, 2, 3, 3, 4, 4, 4, 5, 5];
 
 const countByValue = countBy(array, (element) => element % 2 === 0);
 // { 'true': 2, 'false': 3 }
+```
+
+# `deepSearch`
+
+The `deepSearch` method finds patterns, including nested patterns, in an input, which can be an array, string, or object. It returns the index of the match if found, otherwise it returns undefined.
+
+```
+// strings:
+const input = "Hello World";
+const pattern = "World";
+const matchIndex = deepSearch(input, pattern);
+console.log(matchIndex) // 6
+
+// objects:
+const input = {name: 'John', age: 25, location: 'New York'};
+const pattern = {name: 'John'};
+const matchIndex = deepSearch(input, pattern);
+console.log(matchIndex) // 0
+
+// arrays:
+const input = ["apple","banana","cherry","date","elderberry"];
+const pattern = ["date","elderberry"];
+const matchIndex = deepSearch(input, pattern);
+console.log(matchIndex) // 3
+
+// object with nested objects:
+const input = {
+    name: "John",
+    age: 25,
+    education: {
+        degree: "BS",
+        major: "Computer Science",
+        university : "NYU"
+    },
+    location: "New York"
+}
+const pattern = {education: {degree: "BS", major: "Computer Science"}};
+const matchIndex = deepSearch(input, pattern);
+console.log(matchIndex) // 0
 ```
