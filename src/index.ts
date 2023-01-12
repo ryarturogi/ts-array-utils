@@ -6,6 +6,7 @@ import {
   isArrayOfStrings,
   isNumber,
   isObject,
+  removeArray,
   sortNumberArray,
   sortObjectArray,
   sortStringArray,
@@ -155,10 +156,9 @@ export function shuffle(array: any[]): any[] {
   return copy
 }
 
-export function flattenArray(array: any[]): any[] {
+export function flatten(array: any[]): any[] {
   return array.reduce(
-    (flat, next) =>
-      flat.concat(Array.isArray(next) ? flattenArray(next) : next),
+    (flat, next) => flat.concat(Array.isArray(next) ? flatten(next) : next),
     []
   )
 }
@@ -330,10 +330,33 @@ export function mirror(array: any[]): any[] {
   return array.concat(array.slice().reverse())
 }
 
-export function isSorted(array: any[]): boolean {
-  return array.every((element, index) =>
-    index > 0 ? element >= array[index - 1] : true
-  )
+export function isSorted(
+  data: any,
+  compareFn: (a: any, b: any) => number,
+  direction?: 'asc' | 'desc',
+  findByKey?: string
+): boolean {
+  const values = Array.isArray(data)
+    ? data
+    : findByKey
+    ? Object.values(data).map((val: any) => val[findByKey])
+    : Object.values(data)
+
+  let compare = compareFn
+  if (direction) {
+    compare = direction === 'asc' ? compareFn : (a, b) => -compareFn(a, b)
+  }
+
+  // add a check for undefined values before comparing
+  for (let i = 0; i < values.length - 1; i++) {
+    if (values[i] === undefined || values[i + 1] === undefined) {
+      return false
+    }
+    if (compare(values[i], values[i + 1]) > 0) {
+      return false
+    }
+  }
+  return true
 }
 
 export function isEqual(array1: any[], array2: any[]): boolean {
@@ -382,8 +405,19 @@ export function findLast(
   return findFirst(array.slice().reverse(), callback)
 }
 
-export function remove(array: any[], index: number, count: number): void {
-  array.splice(index, count)
+export function remove(
+  data: any[],
+  index: number | ((x: number) => boolean),
+  count?: number
+): any[] {
+  if (Array.isArray(data)) {
+    if (typeof index === 'function') {
+      index = data.findIndex(index)
+      count = 1
+    }
+    return removeArray(data, index, count) as any
+  }
+  return data
 }
 
 export function insert(array: any[], index: number, ...elements: any[]): void {
@@ -396,14 +430,15 @@ export function merge(array1: any[], array2: any[]): any[] {
 
 export function pad(array: any[], padding: any, repeat: number): any[] {
   return [
-    ...new Array(repeat).fill(padding),
+    ...Array(repeat).fill(padding),
     ...array,
-    ...new Array(repeat).fill(padding),
+    ...Array(repeat).fill(padding),
   ]
 }
 
-export function repeat(element: any, repeat: number): any[] {
-  return new Array(repeat).fill(element)
+export function repeat(array: any[], repeat: number): any[] {
+  let repeatedArray = Array.from({ length: repeat }, () => array)
+  return repeatedArray.flat()
 }
 
 export function range(array: number[]): number[] {

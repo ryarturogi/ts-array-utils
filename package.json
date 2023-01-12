@@ -1,6 +1,6 @@
 {
   "name": "ts-array-utilities",
-  "version": "3.7.1",
+  "version": "3.7.2",
   "description": "multiple array utils, filters, shuffle, etc.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -20,8 +20,8 @@
   ],
   "author": "Ricardo Guillen I",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
+    "@jest/globals": "^29.3.1",
     "@types/jest": "^29.2.5",
     "jest": "^29.3.1",
     "ts-jest": "^29.0.3",
