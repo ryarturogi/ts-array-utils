@@ -226,51 +226,35 @@ console.log(distinctArray);  // [1, 2, 3]
 
 The `shuffle` method returns a new array with the same elements, but in a shuffled order.
 
-<!-- export function shuffle(array: any[]): any[] {
-  const copy = [...array]
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[copy[i], copy[j]] = [copy[j], copy[i]]
-  }
-  return copy
-} -->
-
 ```
 import { shuffle } from 'ts-array-utilities';
 
 const array = [1, 2, 3, 4, 5];
 const shuffledArray = shuffle(array);
-
-console.log(shuffledArray); // [3, 1, 5, 2, 4]
+console.log(shuffledArray); // [3, 1, 5, 2, 4] (the order may be different)
 
 const objectArray = [{ key: 1 }, { key: 2 }, { key: 3 }];
 const shuffledObjectArray = shuffle(objectArray);
-
 console.log(shuffledObjectArray); // [{ key: 2 }, { key: 3 }, { key: 1 }]
 
 const stringArray = ['a', 'b', 'c', 'd', 'e'];
 const shuffledStringArray = shuffle(stringArray);
-
 console.log(shuffledStringArray); // ['c', 'e', 'a', 'b', 'd']
 
 const nestedArray = [[1, 2], [3, 4], [5, 6]];
 const shuffledNestedArray = shuffle(nestedArray);
-
 console.log(shuffledNestedArray); // [[5, 6], [1, 2], [3, 4]]
 
 const nestedObjectArray = [{ key: [1, 2] }, { key: [3, 4] }, { key: [5, 6] }];
 const shuffledNestedObjectArray = shuffle(nestedObjectArray);
-
 console.log(shuffledNestedObjectArray); // [{ key: [5, 6] }, { key: [1, 2] }, { key: [3, 4] }]
 
 const nestedStringArray = [['a', 'b'], ['c', 'd'], ['e', 'f']];
 const shuffledNestedStringArray = shuffle(nestedStringArray);
-
 console.log(shuffledNestedStringArray); // [['e', 'f'], ['a', 'b'], ['c', 'd']]
 
 const nestedMixedArray = [[1, 2], ['a', 'b'], [{ key: 1 }, { key: 2 }]];
 const shuffledNestedMixedArray = shuffle(nestedMixedArray);
-
 console.log(shuffledNestedMixedArray); // [['a', 'b'], [{ key: 1 }, { key: 2 }], [1, 2]]
 ```
 
