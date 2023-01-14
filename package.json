@@ -12,6 +12,7 @@
   "scripts": {
     "test": "exit 0",
     "jest": "jest",
+    "build": "tsc -p ./ --outDir dist/",
     "prepublishOnly": "tsc -p ./ --outDir dist/"
   },
   "keywords": [
