@@ -1,4 +1,4 @@
-name: Publish ts-arrays-utilities Package to Gitub
+name: Publish ts-arrays-utilities Package to Github
 
 on:
   pull_request:
@@ -15,7 +15,8 @@ jobs:
         with:
           node-version: 16
       - run: npm install
-      - run: npm run build
+      - run: npm run prepublishOnly
+      - run: cp -R dist/* .
       - run: npm test
 
   publish-gpr:
@@ -31,7 +32,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: cp -R dist/* .
       - run: npm install
       - run: npm publish
         env:
