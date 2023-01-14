@@ -1,5 +1,5 @@
 {
-  "name": "ts-array-utilities",
+  "name": "@ryarturogi/ts-array-utilities",
   "version": "3.7.2",
   "description": "multiple array utils, filters, shuffle, etc.",
   "main": "./dist/index.js",
@@ -18,8 +18,8 @@
     "array",
     "utils"
   ],
-  "author": "Ricardo Guillen I",
-  "license": "ISC",
+  "author": "Ryarturogi",
+  "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^29.3.1",
     "@types/jest": "^29.2.5",
