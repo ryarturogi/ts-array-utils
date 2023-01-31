@@ -1,5 +1,5 @@
 {
-  "name": "@ryarturogi/ts-array-utilities",
+  "name": "ts-array-utilities",
   "version": "3.7.3",
   "description": "multiple array utils, filters, shuffle, sort, etc",
   "main": "./dist/index.js",
