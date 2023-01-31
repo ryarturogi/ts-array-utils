@@ -1,2 +1,3 @@
-export declare function insertionSort(array: any[], sortBy: string): any[];
-export declare function quicksort(array: any[], sortBy: string): any[];
+declare function insertionSort(array: any[], sortBy: string): any[];
+declare function quicksort(array: any[], sortBy: string): any[];
+export { insertionSort, quicksort };

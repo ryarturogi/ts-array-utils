@@ -13,11 +13,11 @@ import {
 } from './helpers'
 import { insertionSort, quicksort } from './sorting-algorithms'
 
-export function sort(
+const sort = (
   array: any[],
   direction: string = 'asc',
   sortBy: string = ''
-): any[] {
+): any[] => {
   let results: any[] = array
   const isNumberArray = typeof array[0] === 'number'
   const isStringArray = typeof array[0] === 'string'
@@ -37,7 +37,7 @@ export function sort(
   }
 }
 
-export function filter(array: any[], predicate: (item: any) => boolean): any[] {
+const filter = (array: any[], predicate: (item: any) => boolean): any[] => {
   const result: any[] = []
   for (let i = 0; i < array.length; i++) {
     const item = array[i]
@@ -48,10 +48,10 @@ export function filter(array: any[], predicate: (item: any) => boolean): any[] {
   return result
 }
 
-export function transform(
+const transform = (
   array: any[],
   transformer: (n: any) => any = (x) => x
-): any[] {
+): any[] => {
   return array.map((x) => {
     if (typeof x === 'number') {
       return transformer(x)
@@ -61,7 +61,7 @@ export function transform(
   })
 }
 
-export function includes(arr: any[], element: any): any | undefined {
+const includes = (arr: any[], element: any): any | undefined => {
   for (const el of arr) {
     if (Array.isArray(el)) {
       const result = includes(el, element)
@@ -75,7 +75,7 @@ export function includes(arr: any[], element: any): any | undefined {
   return undefined
 }
 
-export function min(array: any[], key?: string): any | undefined {
+const min = (array: any[], key?: string): any | undefined => {
   if (!array.length) return undefined
 
   if (key) {
@@ -85,7 +85,7 @@ export function min(array: any[], key?: string): any | undefined {
   }
 }
 
-export function max(array: any[], key?: string): any | undefined {
+const max = (array: any[], key?: string): any | undefined => {
   if (!array.length) return undefined
 
   if (key) {
@@ -95,7 +95,7 @@ export function max(array: any[], key?: string): any | undefined {
   }
 }
 
-export function sum(array: any[]): number {
+const sum = (array: any[]): number => {
   return array.reduce((acc, cur) => {
     switch (true) {
       case typeof cur === 'number':
@@ -112,7 +112,7 @@ export function sum(array: any[]): number {
   }, 0)
 }
 
-export function average(obj: any): number {
+const average = (obj: any): number => {
   let sum = 0
   let count = 0
   for (const value of Object.values(obj)) {
@@ -131,7 +131,7 @@ export function average(obj: any): number {
   return count ? sum / count : 0
 }
 
-export function distinct(array: any[]): any[] {
+const distinct = (array: any[]): any[] => {
   if (!Array.isArray(array)) return []
 
   if (array.every((x) => typeof x === 'object')) {
@@ -147,7 +147,7 @@ export function distinct(array: any[]): any[] {
   return [...new Set(array)]
 }
 
-export function shuffle(array: any[]): any[] {
+const shuffle = (array: any[]): any[] => {
   const copy = [...array]
   for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
@@ -156,18 +156,18 @@ export function shuffle(array: any[]): any[] {
   return copy
 }
 
-export function flatten(array: any[]): any[] {
+const flatten = (array: any[]): any[] => {
   return array.reduce(
     (flat, next) => flat.concat(Array.isArray(next) ? flatten(next) : next),
     []
   )
 }
 
-export function uniqueElements(array: any[]): any[] {
+const uniqueElements = (array: any[]): any[] => {
   return Array.from(new Set(array))
 }
 
-export function groupBy(array: any[], callback: (element: any) => any): object {
+const groupBy = (array: any[], callback: (element: any) => any): object => {
   return array.reduce((groups, element) => {
     const key = callback(element)
     groups[key] = groups[key] || []
@@ -176,10 +176,10 @@ export function groupBy(array: any[], callback: (element: any) => any): object {
   }, {})
 }
 
-export function partition(
+const partition = (
   array: any[],
   callback: (element: any) => boolean
-): any[][] {
+): any[][] => {
   return array.reduce(
     (partitions, element) => {
       partitions[callback(element) ? 0 : 1].push(element)
@@ -189,15 +189,15 @@ export function partition(
   )
 }
 
-export function intersection(array1: any[], array2: any[]): any[] {
+const intersection = (array1: any[], array2: any[]): any[] => {
   return array1.filter((element) => array2.includes(element))
 }
 
-export function difference(array1: any[], array2: any[]): any[] {
+const difference = (array1: any[], array2: any[]): any[] => {
   return array1.filter((element) => !array2.includes(element))
 }
 
-export function removeDuplicates(array: any[]): void {
+const removeDuplicates = (array: any[]): void => {
   for (let i = 0; i < array.length; i++) {
     for (let j = i + 1; j < array.length; j++) {
       if (array[i] === array[j]) {
@@ -208,7 +208,7 @@ export function removeDuplicates(array: any[]): void {
   }
 }
 
-export function chunk(array: any[], size: number): any[][] {
+const chunk = (array: any[], size: number): any[][] => {
   const chunked: any[][] = []
   for (let i = 0; i < array.length; i += size) {
     chunked.push(array.slice(i, i + size))
@@ -216,7 +216,7 @@ export function chunk(array: any[], size: number): any[][] {
   return chunked
 }
 
-export function randomSample(array: any[], size: number): any[] {
+const randomSample = (array: any[], size: number): any[] => {
   const sample: any[] = []
   for (let i = 0; i < size; i++) {
     const index = Math.floor(Math.random() * array.length)
@@ -225,11 +225,11 @@ export function randomSample(array: any[], size: number): any[] {
   return sample
 }
 
-export function mean(array: number[]): number {
+const mean = (array: number[]): number => {
   return array.reduce((sum, current) => sum + current, 0) / array.length
 }
 
-export function median(array: number[]): number {
+const median = (array: number[]): number => {
   array.sort((a, b) => a - b)
   const middle = Math.floor(array.length / 2)
   if (array.length % 2 === 0) {
@@ -239,7 +239,7 @@ export function median(array: number[]): number {
   }
 }
 
-export function mode(array: number[]): number {
+const mode = (array: number[]): number => {
   const frequency: { [key: number]: number } = {}
   let maxFrequency = 0
   let mode = array[0]
@@ -253,7 +253,7 @@ export function mode(array: number[]): number {
   return mode
 }
 
-export function variance(array: any[]): number {
+function variance(array: any[]): number {
   // check if array is empty
   if (array.length === 0) {
     return 0
@@ -292,29 +292,29 @@ export function variance(array: any[]): number {
   return squaredDifferences.reduce((a, b) => a + b) / array.length
 }
 
-export function standardDeviation(array: number[]): number {
+const standardDeviation = (array: number[]): number => {
   return Math.sqrt(variance(array))
 }
 
-export function countOccurrences(array: any[], element: any): number {
+const countOccurrences = (array: any[], element: any): number => {
   return array.reduce(
     (count, current) => (current === element ? count + 1 : count),
     0
   )
 }
 
-export function zip(...arrays: any[][]): any[][] {
+const zip = (...arrays: any[][]): any[][] => {
   const maxLength = Math.max(...arrays.map((array) => array.length))
   return Array.from({ length: maxLength }).map((_, index) =>
     arrays.map((array) => array[index])
   )
 }
 
-export function unzip(array: any[][]): any[][] {
+const unzip = (array: any[][]): any[][] => {
   return array[0].map((_, index) => array.map((array) => array[index]))
 }
 
-export function rotate(array: any[], positions: number): any[] {
+const rotate = (array: any[], positions: number): any[] => {
   const rotated = array.slice()
   for (let i = 0; i < positions; i++) {
     rotated.unshift(rotated.pop())
@@ -322,20 +322,20 @@ export function rotate(array: any[], positions: number): any[] {
   return rotated
 }
 
-export function flip(array: any[]): any[] {
+const flip = (array: any[]): any[] => {
   return array.reverse()
 }
 
-export function mirror(array: any[]): any[] {
+const mirror = (array: any[]): any[] => {
   return array.concat(array.slice().reverse())
 }
 
-export function isSorted(
+const isSorted = (
   data: any,
   compareFn: (a: any, b: any) => number,
   direction?: 'asc' | 'desc',
   findByKey?: string
-): boolean {
+): boolean => {
   const values = Array.isArray(data)
     ? data
     : findByKey
@@ -359,37 +359,37 @@ export function isSorted(
   return true
 }
 
-export function isEqual(array1: any[], array2: any[]): boolean {
+const isEqual = (array1: any[], array2: any[]): boolean => {
   return (
     array1.length === array2.length &&
     array1.every((element, index) => element === array2[index])
   )
 }
 
-export function swap(array: any[], index1: number, index2: number): void {
+const swap = (array: any[], index1: number, index2: number): void => {
   ;[array[index1], array[index2]] = [array[index2], array[index1]]
 }
 
-export function move(array: any[], from: number, to: number): void {
+const move = (array: any[], from: number, to: number): void => {
   array.splice(to, 0, array.splice(from, 1)[0])
 }
 
-export function fill(array: any[], value: any): void {
+const fill = (array: any[], value: any): void => {
   for (let i = 0; i < array.length; i++) {
     array[i] = value
   }
 }
 
-export function reverseFill(array: any[], value: any): void {
+const reverseFill = (array: any[], value: any): void => {
   for (let i = array.length - 1; i >= 0; i--) {
     array[i] = value
   }
 }
 
-export function findFirst(
+const findFirst = (
   array: any[],
   callback: (element: any) => boolean
-): any | undefined {
+): any | undefined => {
   for (const element of array) {
     if (callback(element)) {
       return element
@@ -398,18 +398,18 @@ export function findFirst(
   return undefined
 }
 
-export function findLast(
+const findLast = (
   array: any[],
   callback: (element: any) => boolean
-): any | undefined {
+): any | undefined => {
   return findFirst(array.slice().reverse(), callback)
 }
 
-export function remove(
+const remove = (
   data: any[],
   index: number | ((x: number) => boolean),
   count?: number
-): any[] {
+): any[] => {
   if (Array.isArray(data)) {
     if (typeof index === 'function') {
       index = data.findIndex(index)
@@ -420,15 +420,15 @@ export function remove(
   return data
 }
 
-export function insert(array: any[], index: number, ...elements: any[]): void {
+const insert = (array: any[], index: number, ...elements: any[]): void => {
   array.splice(index, 0, ...elements)
 }
 
-export function merge(array1: any[], array2: any[]): any[] {
+const merge = (array1: any[], array2: any[]): any[] => {
   return array1.concat(array2)
 }
 
-export function pad(array: any[], padding: any, repeat: number): any[] {
+const pad = (array: any[], padding: any, repeat: number): any[] => {
   return [
     ...Array(repeat).fill(padding),
     ...array,
@@ -436,17 +436,17 @@ export function pad(array: any[], padding: any, repeat: number): any[] {
   ]
 }
 
-export function repeat(array: any[], repeat: number): any[] {
+const repeat = (array: any[], repeat: number): any[] => {
   let repeatedArray = Array.from({ length: repeat }, () => array)
   return repeatedArray.flat()
 }
 
-export function range(array: number[]): number[] {
+const range = (array: number[]): number[] => {
   array.sort((a, b) => a - b)
   return [array[0], array[array.length - 1]]
 }
 
-export function countBy(array: any[], callback: (element: any) => any): object {
+const countBy = (array: any[], callback: (element: any) => any): object => {
   return array.reduce((counts, element) => {
     const key = callback(element)
     counts[key] = (counts[key] || 0) + 1
@@ -454,11 +454,11 @@ export function countBy(array: any[], callback: (element: any) => any): object {
   }, {})
 }
 
-export function deepSearch(
+const deepSearch = (
   input: any,
   pattern: any,
   startIndex: number = 0
-): number | undefined {
+): number | undefined => {
   let idx = startIndex
   while (true) {
     const slice = input.slice(idx, idx + pattern.length)
@@ -481,4 +481,53 @@ export function deepSearch(
     }
     idx += 1
   }
+}
+
+export {
+  sort,
+  filter,
+  transform,
+  includes,
+  min,
+  max,
+  sum,
+  average,
+  distinct,
+  shuffle,
+  flatten,
+  uniqueElements,
+  groupBy,
+  partition,
+  intersection,
+  difference,
+  removeDuplicates,
+  chunk,
+  randomSample,
+  mean,
+  median,
+  mode,
+  variance,
+  standardDeviation,
+  countOccurrences,
+  zip,
+  unzip,
+  rotate,
+  flip,
+  mirror,
+  isSorted,
+  isEqual,
+  swap,
+  move,
+  fill,
+  reverseFill,
+  findFirst,
+  findLast,
+  remove,
+  insert,
+  merge,
+  pad,
+  repeat,
+  range,
+  countBy,
+  deepSearch,
 }
