@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: 16
       - run: npm install
+      - run: npm run clean
       - run: npm run prepublishOnly
       - run: cp -R dist/* .
       - run: npm test

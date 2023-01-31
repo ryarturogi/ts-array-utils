@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deepSearch = exports.countBy = exports.range = exports.repeat = exports.pad = exports.merge = exports.insert = exports.remove = exports.findLast = exports.findFirst = exports.reverseFill = exports.fill = exports.move = exports.swap = exports.isEqual = exports.isSorted = exports.mirror = exports.flip = exports.rotate = exports.unzip = exports.zip = exports.countOccurrences = exports.standardDeviation = exports.variance = exports.mode = exports.median = exports.mean = exports.randomSample = exports.chunk = exports.removeDuplicates = exports.difference = exports.intersection = exports.partition = exports.groupBy = exports.uniqueElements = exports.flatten = exports.shuffle = exports.distinct = exports.average = exports.sum = exports.max = exports.min = exports.includes = exports.transform = exports.filter = exports.sort = void 0;
 const helpers_1 = require("./helpers");
 const sorting_algorithms_1 = require("./sorting-algorithms");
-function sort(array, direction = 'asc', sortBy = '') {
+const sort = (array, direction = 'asc', sortBy = '') => {
     let results = array;
     const isNumberArray = typeof array[0] === 'number';
     const isStringArray = typeof array[0] === 'string';
@@ -22,9 +22,9 @@ function sort(array, direction = 'asc', sortBy = '') {
     else {
         return (0, helpers_1.sortObjectArray)(results, direction, sortBy);
     }
-}
+};
 exports.sort = sort;
-function filter(array, predicate) {
+const filter = (array, predicate) => {
     const result = [];
     for (let i = 0; i < array.length; i++) {
         const item = array[i];
@@ -33,9 +33,9 @@ function filter(array, predicate) {
         }
     }
     return result;
-}
+};
 exports.filter = filter;
-function transform(array, transformer = (x) => x) {
+const transform = (array, transformer = (x) => x) => {
     return array.map((x) => {
         if (typeof x === 'number') {
             return transformer(x);
@@ -44,9 +44,9 @@ function transform(array, transformer = (x) => x) {
             return x;
         }
     });
-}
+};
 exports.transform = transform;
-function includes(arr, element) {
+const includes = (arr, element) => {
     for (const el of arr) {
         if (Array.isArray(el)) {
             const result = includes(el, element);
@@ -59,9 +59,9 @@ function includes(arr, element) {
         }
     }
     return undefined;
-}
+};
 exports.includes = includes;
-function min(array, key) {
+const min = (array, key) => {
     if (!array.length)
         return undefined;
     if (key) {
@@ -70,9 +70,9 @@ function min(array, key) {
     else {
         return Math.min(...array);
     }
-}
+};
 exports.min = min;
-function max(array, key) {
+const max = (array, key) => {
     if (!array.length)
         return undefined;
     if (key) {
@@ -81,9 +81,9 @@ function max(array, key) {
     else {
         return Math.max(...array);
     }
-}
+};
 exports.max = max;
-function sum(array) {
+const sum = (array) => {
     return array.reduce((acc, cur) => {
         switch (true) {
             case typeof cur === 'number':
@@ -98,9 +98,9 @@ function sum(array) {
                 return acc;
         }
     }, 0);
-}
+};
 exports.sum = sum;
-function average(obj) {
+const average = (obj) => {
     let sum = 0;
     let count = 0;
     for (const value of Object.values(obj)) {
@@ -119,9 +119,9 @@ function average(obj) {
         }
     }
     return count ? sum / count : 0;
-}
+};
 exports.average = average;
-function distinct(array) {
+const distinct = (array) => {
     if (!Array.isArray(array))
         return [];
     if (array.every((x) => typeof x === 'object')) {
@@ -131,50 +131,50 @@ function distinct(array) {
         return [...new Set(array.flat())];
     }
     return [...new Set(array)];
-}
+};
 exports.distinct = distinct;
-function shuffle(array) {
+const shuffle = (array) => {
     const copy = [...array];
     for (let i = copy.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [copy[i], copy[j]] = [copy[j], copy[i]];
     }
     return copy;
-}
+};
 exports.shuffle = shuffle;
-function flatten(array) {
+const flatten = (array) => {
     return array.reduce((flat, next) => flat.concat(Array.isArray(next) ? flatten(next) : next), []);
-}
+};
 exports.flatten = flatten;
-function uniqueElements(array) {
+const uniqueElements = (array) => {
     return Array.from(new Set(array));
-}
+};
 exports.uniqueElements = uniqueElements;
-function groupBy(array, callback) {
+const groupBy = (array, callback) => {
     return array.reduce((groups, element) => {
         const key = callback(element);
         groups[key] = groups[key] || [];
         groups[key].push(element);
         return groups;
     }, {});
-}
+};
 exports.groupBy = groupBy;
-function partition(array, callback) {
+const partition = (array, callback) => {
     return array.reduce((partitions, element) => {
         partitions[callback(element) ? 0 : 1].push(element);
         return partitions;
     }, [[], []]);
-}
+};
 exports.partition = partition;
-function intersection(array1, array2) {
+const intersection = (array1, array2) => {
     return array1.filter((element) => array2.includes(element));
-}
+};
 exports.intersection = intersection;
-function difference(array1, array2) {
+const difference = (array1, array2) => {
     return array1.filter((element) => !array2.includes(element));
-}
+};
 exports.difference = difference;
-function removeDuplicates(array) {
+const removeDuplicates = (array) => {
     for (let i = 0; i < array.length; i++) {
         for (let j = i + 1; j < array.length; j++) {
             if (array[i] === array[j]) {
@@ -183,30 +183,30 @@ function removeDuplicates(array) {
             }
         }
     }
-}
+};
 exports.removeDuplicates = removeDuplicates;
-function chunk(array, size) {
+const chunk = (array, size) => {
     const chunked = [];
     for (let i = 0; i < array.length; i += size) {
         chunked.push(array.slice(i, i + size));
     }
     return chunked;
-}
+};
 exports.chunk = chunk;
-function randomSample(array, size) {
+const randomSample = (array, size) => {
     const sample = [];
     for (let i = 0; i < size; i++) {
         const index = Math.floor(Math.random() * array.length);
         sample.push(array[index]);
     }
     return sample;
-}
+};
 exports.randomSample = randomSample;
-function mean(array) {
+const mean = (array) => {
     return array.reduce((sum, current) => sum + current, 0) / array.length;
-}
+};
 exports.mean = mean;
-function median(array) {
+const median = (array) => {
     array.sort((a, b) => a - b);
     const middle = Math.floor(array.length / 2);
     if (array.length % 2 === 0) {
@@ -215,9 +215,9 @@ function median(array) {
     else {
         return array[middle];
     }
-}
+};
 exports.median = median;
-function mode(array) {
+const mode = (array) => {
     const frequency = {};
     let maxFrequency = 0;
     let mode = array[0];
@@ -229,7 +229,7 @@ function mode(array) {
         }
     }
     return mode;
-}
+};
 exports.mode = mode;
 function variance(array) {
     // check if array is empty
@@ -265,40 +265,40 @@ function variance(array) {
     return squaredDifferences.reduce((a, b) => a + b) / array.length;
 }
 exports.variance = variance;
-function standardDeviation(array) {
+const standardDeviation = (array) => {
     return Math.sqrt(variance(array));
-}
+};
 exports.standardDeviation = standardDeviation;
-function countOccurrences(array, element) {
+const countOccurrences = (array, element) => {
     return array.reduce((count, current) => (current === element ? count + 1 : count), 0);
-}
+};
 exports.countOccurrences = countOccurrences;
-function zip(...arrays) {
+const zip = (...arrays) => {
     const maxLength = Math.max(...arrays.map((array) => array.length));
     return Array.from({ length: maxLength }).map((_, index) => arrays.map((array) => array[index]));
-}
+};
 exports.zip = zip;
-function unzip(array) {
+const unzip = (array) => {
     return array[0].map((_, index) => array.map((array) => array[index]));
-}
+};
 exports.unzip = unzip;
-function rotate(array, positions) {
+const rotate = (array, positions) => {
     const rotated = array.slice();
     for (let i = 0; i < positions; i++) {
         rotated.unshift(rotated.pop());
     }
     return rotated;
-}
+};
 exports.rotate = rotate;
-function flip(array) {
+const flip = (array) => {
     return array.reverse();
-}
+};
 exports.flip = flip;
-function mirror(array) {
+const mirror = (array) => {
     return array.concat(array.slice().reverse());
-}
+};
 exports.mirror = mirror;
-function isSorted(data, compareFn, direction, findByKey) {
+const isSorted = (data, compareFn, direction, findByKey) => {
     const values = Array.isArray(data)
         ? data
         : findByKey
@@ -318,48 +318,48 @@ function isSorted(data, compareFn, direction, findByKey) {
         }
     }
     return true;
-}
+};
 exports.isSorted = isSorted;
-function isEqual(array1, array2) {
+const isEqual = (array1, array2) => {
     return (array1.length === array2.length &&
         array1.every((element, index) => element === array2[index]));
-}
+};
 exports.isEqual = isEqual;
-function swap(array, index1, index2) {
+const swap = (array, index1, index2) => {
     ;
     [array[index1], array[index2]] = [array[index2], array[index1]];
-}
+};
 exports.swap = swap;
-function move(array, from, to) {
+const move = (array, from, to) => {
     array.splice(to, 0, array.splice(from, 1)[0]);
-}
+};
 exports.move = move;
-function fill(array, value) {
+const fill = (array, value) => {
     for (let i = 0; i < array.length; i++) {
         array[i] = value;
     }
-}
+};
 exports.fill = fill;
-function reverseFill(array, value) {
+const reverseFill = (array, value) => {
     for (let i = array.length - 1; i >= 0; i--) {
         array[i] = value;
     }
-}
+};
 exports.reverseFill = reverseFill;
-function findFirst(array, callback) {
+const findFirst = (array, callback) => {
     for (const element of array) {
         if (callback(element)) {
             return element;
         }
     }
     return undefined;
-}
+};
 exports.findFirst = findFirst;
-function findLast(array, callback) {
+const findLast = (array, callback) => {
     return findFirst(array.slice().reverse(), callback);
-}
+};
 exports.findLast = findLast;
-function remove(data, index, count) {
+const remove = (data, index, count) => {
     if (Array.isArray(data)) {
         if (typeof index === 'function') {
             index = data.findIndex(index);
@@ -368,43 +368,43 @@ function remove(data, index, count) {
         return (0, helpers_1.removeArray)(data, index, count);
     }
     return data;
-}
+};
 exports.remove = remove;
-function insert(array, index, ...elements) {
+const insert = (array, index, ...elements) => {
     array.splice(index, 0, ...elements);
-}
+};
 exports.insert = insert;
-function merge(array1, array2) {
+const merge = (array1, array2) => {
     return array1.concat(array2);
-}
+};
 exports.merge = merge;
-function pad(array, padding, repeat) {
+const pad = (array, padding, repeat) => {
     return [
         ...Array(repeat).fill(padding),
         ...array,
         ...Array(repeat).fill(padding),
     ];
-}
+};
 exports.pad = pad;
-function repeat(array, repeat) {
+const repeat = (array, repeat) => {
     let repeatedArray = Array.from({ length: repeat }, () => array);
     return repeatedArray.flat();
-}
+};
 exports.repeat = repeat;
-function range(array) {
+const range = (array) => {
     array.sort((a, b) => a - b);
     return [array[0], array[array.length - 1]];
-}
+};
 exports.range = range;
-function countBy(array, callback) {
+const countBy = (array, callback) => {
     return array.reduce((counts, element) => {
         const key = callback(element);
         counts[key] = (counts[key] || 0) + 1;
         return counts;
     }, {});
-}
+};
 exports.countBy = countBy;
-function deepSearch(input, pattern, startIndex = 0) {
+const deepSearch = (input, pattern, startIndex = 0) => {
     let idx = startIndex;
     while (true) {
         const slice = input.slice(idx, idx + pattern.length);
@@ -428,5 +428,5 @@ function deepSearch(input, pattern, startIndex = 0) {
         }
         idx += 1;
     }
-}
+};
 exports.deepSearch = deepSearch;
